@@ -1,0 +1,71 @@
+.stan {
+  // background-color: grey;
+  position: absolute;
+  background-color: gold;
+  // width: 525px;
+  // height: 795px;
+  width: 50vw;
+  // 0.660377358490566
+  height: calc(50vw * (795/525));
+  &__head {
+    background-color: #ffe1c4;
+    width: 95.24%;
+    height: 61.64%;
+    border-radius: 50%;
+    position: relative;
+    // transform: translate()
+  }
+
+
+}
+
+$default-eye-angle: 20deg;
+$default-eye-pupil-width: 15%;
+$default-eye-pupil-height: 13%;
+.eye-default {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  background-color: white;
+  width: 25.51%;
+  height: 30%;
+  border-radius: 50%;
+  transform: translate(-100%) rotate($default-eye-angle);
+  $c: &;
+  &--left {
+    transform: translate(0) rotate(-$default-eye-angle);
+    #{$c}__pupil {
+      top: 40%;
+      left: calc(100% - 70% - #{$default-eye-pupil-width});
+    }
+  }
+
+  &__pupil {
+    background-color: black;
+    width: $default-eye-pupil-width;
+    height: $default-eye-pupil-height;
+    border-radius: 50%;
+    position: relative;
+    left: 70%;
+    top: 40%;
+  }
+}
+
+.mouth-sad {
+  position: absolute;
+  // top: 35%;
+  // left: 50%;
+  top: 0;
+  left: 0;
+  width: 10%;
+  height: 15%;
+  // background-color: red;
+  border-radius: 50%;
+  // box-shadow: 10% 0 0 -5% black;
+  // background: radial-gradient(black 0, black 10%, transparent 10%);
+}
+
+.element-wrapper {
+  position: absolute;
+  background-color: green;
+}
