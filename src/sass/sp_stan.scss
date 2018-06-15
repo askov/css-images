@@ -1,30 +1,58 @@
+$face-color: #ffe1c4;
+$default-eye-angle: 20deg;
+$default-eye-pupil-width: 17px;
+$default-eye-pupil-height: 17px;
+
+
+// $face-size:
 .stan {
-  // background-color: grey;
   position: absolute;
   background-color: gold;
-  // width: 525px;
-  // height: 795px;
-  width: 50vw;
-  // 0.660377358490566
-  height: calc(50vw * (795/525));
+  // width: 50vw;
+  width: 525px;
+  height: 795px;
+  // height: calc(50vw * (795/525));
   &__head {
-    background-color: #ffe1c4;
+    position: absolute;
+    bottom: 230px;
+    left: 2%;
+    background-color: $face-color;
     width: 95.24%;
     height: 61.64%;
     border-radius: 50%;
-    position: relative;
+    // position: relative;
     // transform: translate()
+    background: linear-gradient(to bottom, #3652a3 0, #3652a3 198px, $face-color 198px, $face-color);
   }
+
+
 
 
 }
 
-$default-eye-angle: 20deg;
-$default-eye-pupil-width: 15%;
-$default-eye-pupil-height: 13%;
+.stan-hat {
+  position: absolute;
+  bottom: 230px;
+  left: 2%;
+  background: linear-gradient(to bottom, #3652a3 0, #3652a3 198px, transparent 198px, transparent);
+  width: 95.24%;
+  height: 61.64%;
+  border-radius: 50%;
+  &__pompom {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 120px;
+    height: 120px;
+    background-color: red;
+    border-radius: 50%;
+    transform: translate(-50%, -60%);
+  }
+}
+
 .eye-default {
   position: absolute;
-  top: 35%;
+  top: 41%;
   left: 50%;
   background-color: white;
   width: 25.51%;
@@ -36,7 +64,7 @@ $default-eye-pupil-height: 13%;
     transform: translate(0) rotate(-$default-eye-angle);
     #{$c}__pupil {
       top: 40%;
-      left: calc(100% - 70% - #{$default-eye-pupil-width});
+      left: calc(100% - 65% - #{$default-eye-pupil-width});
     }
   }
 
@@ -46,23 +74,35 @@ $default-eye-pupil-height: 13%;
     height: $default-eye-pupil-height;
     border-radius: 50%;
     position: relative;
-    left: 70%;
+    left: 65%;
     top: 40%;
   }
 }
 
 .mouth-sad {
   position: absolute;
-  // top: 35%;
-  // left: 50%;
-  top: 0;
-  left: 0;
-  width: 10%;
-  height: 15%;
-  // background-color: red;
+  top: 85%;
+  left: 40%;
+  // top: 0;
+  // left: 0;
+  width: 15%;
+  height: 5%;
+  background-color: black;
+  // box-shadow: 0 -15px 0 -10px black;
   border-radius: 50%;
-  // box-shadow: 10% 0 0 -5% black;
-  // background: radial-gradient(black 0, black 10%, transparent 10%);
+  // transform: rotate(5deg);
+
+  // &:after {
+  //   position: relative;
+  //   top: 40%;
+  //   left: -10%;
+  //   display: block;
+  //   content: '';
+  //   background-color: $face-color;
+  //   border-radius: 50%;
+  //   width: 120%;
+  //   height: 100%;
+  // }
 }
 
 .element-wrapper {
