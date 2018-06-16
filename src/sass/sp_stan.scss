@@ -1,52 +1,173 @@
-$face-color: #ffe1c4;
+$container-width: 525px;
+$container-height: 795px;
+
+
+$skin-color: #ffe1c4;
 $default-eye-angle: 20deg;
 $default-eye-pupil-width: 17px;
 $default-eye-pupil-height: 17px;
 
+$head-width: 490px;
+$head-height: 500px;
+$head-top-position: 65px;
+// $head-bottom-position: 230px;
+
+$hat-height: 198px;
+$hat-width: 490px;
+$hat-bottom-width: 500px;
+$hat-bottom-container-height: 97px;
+
+// $hat-bottom-radius: 1600px;
+$hat-bottom-color: #e30000;
+$hat-pompom-color: #e30000;
+$hat-bottom-inner-radius: 800px;
+$hat-bottom-height: 55px;
+$hat-bottom-outer-radius: $hat-bottom-inner-radius + $hat-bottom-height;
+
+
+$jacket-color: #7c4e32;
+
 
 // $face-size:
 .stan {
-  position: absolute;
+  position: relative;
   background-color: gold;
-  // width: 50vw;
-  width: 525px;
-  height: 795px;
-  // height: calc(50vw * (795/525));
+  width: $container-width;
+  height: $container-height;
   &__head {
     position: absolute;
-    bottom: 230px;
-    left: 2%;
-    background-color: $face-color;
-    width: 95.24%;
-    height: 61.64%;
+    top: $head-top-position;
+    left: ($container-width - $head-width) / 2;
+    background-color: $skin-color;
+    width: $head-width;
+    height: $head-height;
     border-radius: 50%;
-    // position: relative;
-    // transform: translate()
-    background: linear-gradient(to bottom, #3652a3 0, #3652a3 198px, $face-color 198px, $face-color);
+    // background: linear-gradient(to bottom, #3652a3 0, #3652a3 198px, $skin-color 198px, $skin-color);
   }
 
+  &__legs {
+    position: absolute;
+    width: 322px;
+    height: 60px;
+    background-color: #000066;
+    left: 50%;
+    transform: translate(-50%);
+    bottom: 12px;
+  }
+  &__foot {
+    position: absolute;
+    top: 70%;
+    // background-color: black;
+    background: linear-gradient(to bottom, black 0, black 30%, transparent 30%);
+    width: 67%;
+    height: 100%;
+    border-radius: 50%;
+    transform: translate(-50%);
+    &--left {
+      left: 20%;
+    }
+    &--right {
+    left: 80%;
+    }
+  }
+  &__arm {
+    position: absolute;
+    top: 0;
+    left: 100px;
+    width: 54px;
+    height: 200px;
+    background-color: $jacket-color;
+    // border-radius: 50%;
+    // &--left {
+    //   top: 0;
+    //   left: 300px;
+    // }
+  }
 
+  &__hand {
+    position: absolute;
+    // bottom: 0;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%);
+    width: 76px;
+    height: 76px;
+    background-color: $skin-color;
+    border-radius: 50%;
+  }
 
+  &__thumb {
+    position: absolute;
+    width: 48%;
+    height: 48%;
+    background-color: $skin-color;
+    border-radius: 50%;
+    border: 3px solid #edaf72;
+    top: 10%;
+    left: 70%;
+  }
 
 }
 
-.stan-hat {
+.hat-wrapper {
   position: absolute;
-  bottom: 230px;
-  left: 2%;
-  background: linear-gradient(to bottom, #3652a3 0, #3652a3 198px, transparent 198px, transparent);
-  width: 95.24%;
-  height: 61.64%;
+  top: 100px;
+  left: 0;
+  top: $head-top-position;
+  left: ($container-width - $head-width) / 2;
+}
+.stan-hat {
+  position: relative;
+  background: linear-gradient(to bottom, #3652a3 0, #3652a3 $hat-height, transparent $hat-height, transparent);
+  width:  $head-width;
+  height: $head-height;
   border-radius: 50%;
-  &__pompom {
+  &__pompom-container {
     position: absolute;
     left: 50%;
     top: 0;
     width: 120px;
     height: 120px;
-    background-color: red;
+    // background-color: pink;
     border-radius: 50%;
-    transform: translate(-50%, -60%);
+    transform: translate(-50%, -50%);
+    & > div {
+      position: absolute;
+      background-color: $hat-pompom-color;
+      width: 100%;
+      height: 10px;
+      top: 50%;
+      border-radius: 4px;
+      border-width: 1px 0;
+      border-style: solid;
+      border-image: linear-gradient(to left, transparent 0, transparent 30%, black 30%, black 70%, transparent 70%) 1 stretch;
+      box-sizing: border-box;
+    }
+    @for $i from 1 through 8 {
+      & > div:nth-child(#{$i}) {
+        $angle: $i * 22.5 + 22.5;
+        transform: translate(0, -50%) rotate(-#{$angle}deg);
+        border-top: 1px solid black;
+        box-shadow: 0 0 0 2px -10px black;
+      }
+    }
+  }
+  &__bottom {
+    position: absolute;
+    top: $hat-height - ($hat-bottom-container-height - $hat-bottom-height + 12px);
+    left: 50%;
+    background: radial-gradient(
+      circle at 50% $hat-bottom-outer-radius,
+    transparent,
+    transparent $hat-bottom-inner-radius,
+    $hat-bottom-color $hat-bottom-inner-radius,
+    $hat-bottom-color $hat-bottom-outer-radius,
+    transparent $hat-bottom-outer-radius,
+    transparent 100%
+    );
+    height: $hat-bottom-container-height;
+    width: $hat-bottom-width;
+    transform: translate(-50%);
   }
 }
 
@@ -79,33 +200,26 @@ $default-eye-pupil-height: 17px;
   }
 }
 
-.mouth-sad {
+.mouth-container {
   position: absolute;
   top: 85%;
-  left: 40%;
-  // top: 0;
-  // left: 0;
-  width: 15%;
-  height: 5%;
-  background-color: black;
-  // box-shadow: 0 -15px 0 -10px black;
-  border-radius: 50%;
-  // transform: rotate(5deg);
-
-  // &:after {
-  //   position: relative;
-  //   top: 40%;
-  //   left: -10%;
-  //   display: block;
-  //   content: '';
-  //   background-color: $face-color;
-  //   border-radius: 50%;
-  //   width: 120%;
-  //   height: 100%;
-  // }
+  left: 50%;
+  width: 70px;
+  height: 10px;
+  // background-color: red;
+  transform: translate(-50%) rotate(5deg);
+  overflow: hidden;
 }
 
-.element-wrapper {
+.mouth-sad {
   position: absolute;
-  background-color: green;
+  top: 0;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  border: 5px solid black;
+  // margin-left: -70%;
+  // left: 50%;
+  border-radius: 50%;
+  transform: translate(-50%);
 }

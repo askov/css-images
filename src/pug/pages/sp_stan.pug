@@ -3,7 +3,6 @@ extends ../layouts/default.pug
 block vars
   - var title = 'Stan Marsh'
   - var style = "sp_stan"
-    //- .element-wrapper
 
 block content
   .stan
@@ -12,8 +11,21 @@ block content
         .eye-default__pupil
       .eye-default.eye-default--left
         .eye-default__pupil
-      .mouth-sad
-    .stan-hat
-      .stan-hat__pompom
-
+      .mouth-container
+        .mouth-sad
+    .hat-wrapper
+      .stan-hat
+        .stan-hat__bottom
+        .stan-hat__pompom-container
+          - for(var i = 0; i < 8; i++)
+            div
+    .stan__legs
+      .stan__foot.stan__foot--left
+      .stan__foot.stan__foot--right
+    .stan__arm
+      .stan__hand
+        .stan__thumb
+    .stan__arm--left
+      .stan__hand
+        .stan__thumb
 
