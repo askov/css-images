@@ -1,4 +1,11 @@
 'use strict';
+
+try {
+  var local_settings = require('./localsettings');
+} catch (e) {
+  console.log(`\nlocalsettings not found. Using default browsersync settings\n*** ${e.code} ***\n`);
+}
+
 var browserSync = require('browser-sync').create(),
   pug = require('gulp-pug'),
   gulp = require('gulp'),
@@ -11,10 +18,6 @@ var browserSync = require('browser-sync').create(),
       src: 'src/sass/**/*.scss',
       dest: 'dest/css/'
     },
-    // html: {
-    //   src: 'src/html/**/*.html',
-    //   dest: 'dest/html/'
-    // },
     pug: {
       src: 'src/pug/pages/**/*.pug',
       dest: 'dest/html/'
@@ -23,19 +26,19 @@ var browserSync = require('browser-sync').create(),
       src: 'src/assets/**/*.{png,jpg,jpeg}',
       dest: 'dest/assets/',
     }
-    // scripts: {
-    //   src: 'src/scripts/**/*.js',
-    //   dest: 'assets/scripts/'
-    // }
   };
 
 function sync() {
-  browserSync.init({
+  var conf = {
     server: {
       directory: true,
       baseDir: "dest"
     }
-  });
+  };
+  if (local_settings) {
+    conf = Object.assign({}, conf, local_settings);
+  }
+  browserSync.init(conf);
 }
 
 function clean() {
@@ -45,7 +48,7 @@ function clean() {
 function styles() {
   var plugins = [
     autoprefixer({
-      browsers: ['last 2 versions']
+      browsers: ['last 2 versions', 'ie >= 9']
     })
   ];
   return gulp.src(paths.styles.src)
@@ -54,12 +57,6 @@ function styles() {
     .pipe(gulp.dest(paths.styles.dest))
     .pipe(browserSync.stream());
 }
-
-// function copyhtml() {
-//   return gulp.src(paths.html.src)
-//     .pipe(gulp.dest(paths.html.dest))
-//     .pipe(browserSync.stream());
-// }
 
 function views() {
   return gulp.src(paths.pug.src)
@@ -84,7 +81,5 @@ var build = gulp.series(gulp.parallel(styles, views, copyassets));
 var dev = gulp.series(clean, build, gulp.parallel(sync, watch));
 
 
-// Static server
-// gulp.task('browser-sync', sync);
 gulp.task('dev', dev);
 gulp.task('build', build);

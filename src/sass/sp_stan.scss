@@ -26,25 +26,31 @@ $jacket-collar-color: #e30000;
 // Pants
 $pants-color: #000066;
 
+@mixin absolute-center() {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+}
+@mixin main-animation-cycle() {
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+}
+
 .stan {
   position: relative;
   margin: auto;
   width: $container-width;
   height: $container-height;
   &__head {
-    position: absolute;
+    @include absolute-center;
     top: $head-top-position;
-    left: 50%;
-    transform: translate(-50%);
     width: $head-width;
     height: $head-height;
     border-radius: 50%;
     overflow: hidden;
   }
   &__face {
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%);
+    @include absolute-center;
     top: 40.7%;
     background-color: $skin-color;
     padding: 300%;
@@ -52,12 +58,10 @@ $pants-color: #000066;
   }
 
   &__legs {
-    position: absolute;
+    @include absolute-center;
     width: 61%;
     height: 8%;
     background-color: $pants-color;
-    left: 50%;
-    transform: translate(-50%);
     bottom: 1.5%;
   }
   &__foot {
@@ -100,13 +104,11 @@ $pants-color: #000066;
   }
 
   &__jacket {
-    position: absolute;
+    @include absolute-center;
     width: 65%;
     height: 25.16%;
     background-color: $jacket-color;
     bottom: 7.5%;
-    left: 50%;
-    transform: translate(-50%);
     border-radius: 50% / 10%;
   }
   &__jacket-buttons {
@@ -126,10 +128,8 @@ $pants-color: #000066;
     }
   }
   &__jacket-zipper {
-    position: absolute;
-    left: 50%;
+    @include absolute-center;
     top: 10%;
-    transform: translate(-50%);
     background-color: black;
     width: 0.8%;
     top: 74%;
@@ -139,9 +139,7 @@ $pants-color: #000066;
     z-index: 42;
   }
   &__jacket-collar {
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%);
+    @include absolute-center;
     background-color: $jacket-collar-color;
     width: 57.14%;
     height: 12.58%;
@@ -184,9 +182,7 @@ $pants-color: #000066;
     left: 70%;
   }
   &__hat-wrapper {
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%);
+    @include absolute-center;
     top: $head-top-position;
     width:  $head-width;
     height: $head-height;
@@ -227,9 +223,7 @@ $pants-color: #000066;
       }
     }
     &-bottom {
-      position: absolute;
-      transform: translate(-50%);
-      left: 50%;
+      @include absolute-center;
       top: 29%;
       height: 80px;
       height: 16%;
@@ -248,57 +242,52 @@ $pants-color: #000066;
   }
 }
 
-
-
-
 .eye-default {
   position: absolute;
-  top: 41%;
   left: 50%;
+  top: 41%;
   background-color: white;
   width: 25.51%;
   height: 30%;
   border-radius: 50%;
   transform: translate(-100%) rotate($default-eye-angle);
-  $c: &;
   &--left {
     transform: translate(0) rotate(-$default-eye-angle);
-    #{$c}__pupil {
-      top: 40%;
-      left: calc(100% - 65% - #{$default-eye-pupil-width});
-    }
   }
 
   &__pupil {
+    animation: right-eye-motion;
+    @include main-animation-cycle;
     background-color: black;
     width: $default-eye-pupil-width;
     height: $default-eye-pupil-height;
     border-radius: 50%;
     position: relative;
-    left: 65%;
-    top: 40%;
+    &--left {
+      left: calc(100% - 65% - #{$default-eye-pupil-width});
+      animation: left-eye-motion;
+      @include main-animation-cycle;
+    }
   }
 }
 
 .mouth-container {
-  position: absolute;
+  @include absolute-center;
   top: 85%;
-  left: 50%;
   width: 14%;
   height: 2%;
-  transform: translate(-50%) rotate(5deg);
   overflow: hidden;
+  animation: mouth-container-motion;
+  @include main-animation-cycle;
 }
 
 .mouth-sad {
-  position: absolute;
+  @include absolute-center;
   top: 0;
-  left: 50%;
   width: 300%;
   height: 2000%;
   border: 4px solid black;
   border-radius: 50%;
-  transform: translate(-50%);
 }
 
 @media screen and (max-width: 1200px) {
@@ -314,5 +303,49 @@ $pants-color: #000066;
 @media screen and (max-width: 800px) {
   .mouth-sad {
     border-width: 1px;
+  }
+}
+
+
+@keyframes right-eye-motion {
+  0% {
+    left: 65%;
+    top: 40%;
+  }
+  50% {
+    left: 40%;
+    top: 45%;
+  }
+  100% {
+    left: 65%;
+    top: 40%;
+  }
+}
+
+@keyframes left-eye-motion {
+  0% {
+    left: calc(100% - 40% - #{$default-eye-pupil-width});
+    top: 45%;
+  }
+  50% {
+    left: calc(100% - 65% - #{$default-eye-pupil-width});
+    top: 40%;
+  }
+  100% {
+    left: calc(100% - 40% - #{$default-eye-pupil-width});
+    top: 45%;
+  }
+}
+
+
+@keyframes mouth-container-motion {
+  0% {
+  transform: translate(-50%) rotate(5deg);
+  }
+  // 50% {
+  //   transform: translate(-50%) rotate(0deg);
+  // }
+  100% {
+    transform: translate(-50%) rotate(-5deg);
   }
 }
