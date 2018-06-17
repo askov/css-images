@@ -1,64 +1,68 @@
-$container-width: 525px;
-$container-height: 795px;
-
-
+// Container
+$container-width: 25vw;
+$container-min-width: 200px;
+$container-max-width: 500px;
+$ratio: 795/525;
+$container-height: $container-width * $ratio;
+// General
 $skin-color: #ffe1c4;
+// Eye
 $default-eye-angle: 20deg;
-$default-eye-pupil-width: 17px;
-$default-eye-pupil-height: 17px;
-
-$head-width: 490px;
-$head-height: 500px;
-$head-top-position: 65px;
-// $head-bottom-position: 230px;
-
-$hat-height: 198px;
-$hat-width: 490px;
-$hat-bottom-width: 500px;
-$hat-bottom-container-height: 97px;
-
-// $hat-bottom-radius: 1600px;
+$default-eye-pupil-width: 14%;
+$default-eye-pupil-height: 12%;
+// Head
+$head-width: 93.3%;
+$head-height: 62.9%;
+$head-top-position: 8.18%;
+// Hat
+$hat-height: 40%;
+$hat-bottom-width: 102%;
+$hat-bottom-container-height: 100%;
 $hat-bottom-color: #e30000;
 $hat-pompom-color: #e30000;
-$hat-bottom-inner-radius: 800px;
-$hat-bottom-height: 55px;
-$hat-bottom-outer-radius: $hat-bottom-inner-radius + $hat-bottom-height;
-
-
+// Jacket
 $jacket-color: #7c4e32;
 $jacket-collar-color: #e30000;
+// Pants
+$pants-color: #000066;
 
-
-// $face-size:
 .stan {
   position: relative;
-  background-color: gold;
+  margin: auto;
   width: $container-width;
   height: $container-height;
   &__head {
     position: absolute;
     top: $head-top-position;
-    left: ($container-width - $head-width) / 2;
-    background-color: $skin-color;
+    left: 50%;
+    transform: translate(-50%);
     width: $head-width;
     height: $head-height;
     border-radius: 50%;
-    // background: linear-gradient(to bottom, #3652a3 0, #3652a3 198px, $skin-color 198px, $skin-color);
+    overflow: hidden;
+  }
+  &__face {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    top: 40.7%;
+    background-color: $skin-color;
+    padding: 300%;
+    border-radius: 50%;
   }
 
   &__legs {
     position: absolute;
-    width: 322px;
-    height: 60px;
-    background-color: #000066;
+    width: 61%;
+    height: 8%;
+    background-color: $pants-color;
     left: 50%;
     transform: translate(-50%);
-    bottom: 12px;
+    bottom: 1.5%;
   }
   &__foot {
     position: absolute;
     top: 70%;
-    // background-color: black;
     background: linear-gradient(to bottom, black 0, black 30%, transparent 30%);
     width: 67%;
     height: 100%;
@@ -73,212 +77,179 @@ $jacket-collar-color: #e30000;
   }
   &__arm {
     position: absolute;
-    top: 500px;
-    left: 70px;
-    width: 80px;
-    height: 200px;
+    top: 62.9%;
+    left: 13.3%;
+    width: 15.23%;
+    height: 25.16%;
     background-color: $jacket-color;
-    // background-color: red;
     border-radius: 50%;
-    // border-radius: 50%;
     &--left {
-      // top: 0;
-      left: 380px;
+      left: 71%;
       transform: rotate(-20deg) scaleX(-1);
-
     }
     transform: rotate(20deg);
   }
   &__arm-contour {
     position: absolute;
-    width: 3px;
-    height: 50px;
+    width: 2%;
+    height: 25%;
     background-color: black;
     left: 80%;
     top: 50%;
     transform: rotate(-10deg);
-    // &--left {
-
-    // }
   }
 
   &__jacket {
     position: absolute;
-    width: 200px;
-    height: 200px;
+    width: 65%;
+    height: 25.16%;
     background-color: $jacket-color;
-    bottom: 60px;
+    bottom: 7.5%;
     left: 50%;
     transform: translate(-50%);
-    width: 350px;
     border-radius: 50% / 10%;
   }
   &__jacket-buttons {
     position: absolute;
-    // left: 50%;
-    // top: 572px;
     top: 74%;
     right: 50%;
-    // border-right: 5px solid black;
-    // transform: translate(-90%);
-    // background-color: red;
-    width: 25px;
+    width: 4.5%;
     height: 17%;
-    // background-color: red;
-    padding-top: 13px;
+    padding-top: 2%;
     & > div {
       background-color: black;
-      width: 13px;
-      height: 13px;
+      position: relative;
+      width: 52%;
+      padding-top: 52%;
       border-radius: 50%;
-      margin-bottom: 39px;
-      &:first-child {
-        margin-bottom: 35px;
-      }
+      margin-bottom: 140%;
     }
-
-    // &:after {
-
-    // }
   }
   &__jacket-zipper {
     position: absolute;
     left: 50%;
-    top: 74.5%;
+    top: 10%;
     transform: translate(-50%);
     background-color: black;
-    width: 4px;
+    width: 0.8%;
+    top: 74%;
     height: 18%;
-    // border-radius:
-    &:after {
-      position: absolute;
-      content: '';
-      display: block;
-      // width: 50px;
-      // height: 50px;
-      border: 2px solid black;
-      border-width: 4px 2px 4px 2px;
-      border-color: transparent transparent black transparent;
-      // background-color: pink;
-      top: 0;
-      transform: translate(0, -100%);
-
-    }
+    border-top-left-radius: 40%;
+    border-top-right-radius: 40%;
+    z-index: 42;
   }
   &__jacket-collar {
     position: absolute;
     left: 50%;
     transform: translate(-50%);
     background-color: $jacket-collar-color;
-    width: 300px;
-    height: 100px;
+    width: 57.14%;
+    height: 12.58%;
     top: 62%;
-    // border-radius: 40% / 50%;
-    // border-top-left-radius: 20px 40px;
-    // border-top-right-radius: 3px 4px;
     border-bottom-left-radius: 40% 100%;
     border-bottom-right-radius: 40% 100%;
     &:after {
-      top: 73%;
+      top: 68%;
       left: 50%;
-      transform: translate(-50%);
       content: '';
       display: block;
       position: absolute;
-      // bottom: 0;
-      // left: 0;
-      border: 10px solid black;
-      border-width: 20px 10px 20px 10px;
-      border-color: $jacket-color transparent transparent transparent;
+      width: 7%;
+      height: 30%;
+      background-color: green;
+      background: linear-gradient(45deg, transparent 0, transparent 50%, $jacket-color 50%);
+      transform: translate(-76%) rotate(20deg);
     }
   }
 
   &__hand {
     position: absolute;
-    // bottom: 0;
     top: 75%;
     left: 50%;
     transform: translate(-50%);
-    width: 76px;
-    height: 76px;
+    width: 100%;
+    height: 40%;
     background-color: $skin-color;
     border-radius: 50%;
   }
 
   &__thumb {
+    box-sizing: border-box;
     position: absolute;
-    width: 48%;
-    height: 48%;
+    padding: 22%;
     background-color: $skin-color;
     border-radius: 50%;
-    border: 3px solid #edaf72;
+    border: 1px solid #edaf72;
     top: 0;
     left: 70%;
   }
-
-}
-
-.hat-wrapper {
-  position: absolute;
-  top: 100px;
-  left: 0;
-  top: $head-top-position;
-  left: ($container-width - $head-width) / 2;
-}
-.stan-hat {
-  position: relative;
-  background: linear-gradient(to bottom, #3652a3 0, #3652a3 $hat-height, transparent $hat-height, transparent);
-  width:  $head-width;
-  height: $head-height;
-  border-radius: 50%;
-  &__pompom-container {
+  &__hat-wrapper {
     position: absolute;
     left: 50%;
-    top: 0;
-    width: 120px;
-    height: 120px;
-    // background-color: pink;
+    transform: translate(-50%);
+    top: $head-top-position;
+    width:  $head-width;
+    height: $head-height;
+  }
+  &__hat {
+    position: absolute;
+    background: linear-gradient(to bottom, #3652a3 0, #3652a3 $hat-height, transparent $hat-height, transparent);
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
-    transform: translate(-50%, -50%);
-    & > div {
+    &-pompom-container {
       position: absolute;
-      background-color: $hat-pompom-color;
-      width: 100%;
-      height: 10px;
-      top: 50%;
-      border-radius: 4px;
-      border-width: 1px 0;
-      border-style: solid;
-      border-image: linear-gradient(to left, transparent 0, transparent 30%, black 30%, black 70%, transparent 70%) 1 stretch;
-      box-sizing: border-box;
+      left: 50%;
+      top: 0;
+      width: 24.5%;
+      height: 24.5%;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      & > div {
+        position: absolute;
+        background-color: $hat-pompom-color;
+        width: 100%;
+        height: 8%;
+        top: 50%;
+        border-radius: 4% / 50%;
+        border-width: 1px 0;
+        border-style: solid;
+        border-image: linear-gradient(to left, transparent 0, transparent 30%, black 30%, black 70%, transparent 70%) 1 stretch;
+        box-sizing: border-box;
+      }
+      @for $i from 1 through 8 {
+        & > div:nth-child(#{$i}) {
+          $angle: $i * 22.5 + 22.5;
+          transform: translate(0, -50%) rotate(-#{$angle}deg);
+          border-top: 1px solid black;
+          box-shadow: 0 0 0 2px -10px black;
+        }
+      }
     }
-    @for $i from 1 through 8 {
-      & > div:nth-child(#{$i}) {
-        $angle: $i * 22.5 + 22.5;
-        transform: translate(0, -50%) rotate(-#{$angle}deg);
-        border-top: 1px solid black;
-        box-shadow: 0 0 0 2px -10px black;
+    &-bottom {
+      position: absolute;
+      transform: translate(-50%);
+      left: 50%;
+      top: 29%;
+      height: 80px;
+      height: 16%;
+      width: 102%;
+      overflow: hidden;
+      & > div {
+        position: relative;
+        top: 0;
+        left: 50%;
+        background-color: $hat-bottom-color;
+        padding: 300%;
+        border-radius: 50%;
+        transform: translate(-50%);
       }
     }
   }
-  &__bottom {
-    position: absolute;
-    top: $hat-height - ($hat-bottom-container-height - $hat-bottom-height + 12px);
-    left: 50%;
-    background: radial-gradient(
-      circle at 50% $hat-bottom-outer-radius,
-    transparent,
-    transparent $hat-bottom-inner-radius,
-    $hat-bottom-color $hat-bottom-inner-radius,
-    $hat-bottom-color $hat-bottom-outer-radius,
-    transparent $hat-bottom-outer-radius,
-    transparent 100%
-    );
-    height: $hat-bottom-container-height;
-    width: $hat-bottom-width;
-    transform: translate(-50%);
-  }
 }
+
+
+
 
 .eye-default {
   position: absolute;
@@ -313,9 +284,8 @@ $jacket-collar-color: #e30000;
   position: absolute;
   top: 85%;
   left: 50%;
-  width: 70px;
-  height: 10px;
-  // background-color: red;
+  width: 14%;
+  height: 2%;
   transform: translate(-50%) rotate(5deg);
   overflow: hidden;
 }
@@ -324,11 +294,25 @@ $jacket-collar-color: #e30000;
   position: absolute;
   top: 0;
   left: 50%;
-  width: 200px;
-  height: 200px;
-  border: 5px solid black;
-  // margin-left: -70%;
-  // left: 50%;
+  width: 300%;
+  height: 2000%;
+  border: 4px solid black;
   border-radius: 50%;
   transform: translate(-50%);
+}
+
+@media screen and (max-width: 1200px) {
+  .mouth-sad {
+    border-width: 3px;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .mouth-sad {
+    border-width: 2px;
+  }
+}
+@media screen and (max-width: 800px) {
+  .mouth-sad {
+    border-width: 1px;
+  }
 }
