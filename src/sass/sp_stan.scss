@@ -26,6 +26,7 @@ $hat-bottom-outer-radius: $hat-bottom-inner-radius + $hat-bottom-height;
 
 
 $jacket-color: #7c4e32;
+$jacket-collar-color: #e30000;
 
 
 // $face-size:
@@ -72,22 +73,130 @@ $jacket-color: #7c4e32;
   }
   &__arm {
     position: absolute;
-    top: 0;
-    left: 100px;
-    width: 54px;
+    top: 500px;
+    left: 70px;
+    width: 80px;
     height: 200px;
     background-color: $jacket-color;
+    // background-color: red;
+    border-radius: 50%;
     // border-radius: 50%;
+    &--left {
+      // top: 0;
+      left: 380px;
+      transform: rotate(-20deg) scaleX(-1);
+
+    }
+    transform: rotate(20deg);
+  }
+  &__arm-contour {
+    position: absolute;
+    width: 3px;
+    height: 50px;
+    background-color: black;
+    left: 80%;
+    top: 50%;
+    transform: rotate(-10deg);
     // &--left {
-    //   top: 0;
-    //   left: 300px;
+
     // }
+  }
+
+  &__jacket {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-color: $jacket-color;
+    bottom: 60px;
+    left: 50%;
+    transform: translate(-50%);
+    width: 350px;
+    border-radius: 50% / 10%;
+  }
+  &__jacket-buttons {
+    position: absolute;
+    // left: 50%;
+    // top: 572px;
+    top: 74%;
+    right: 50%;
+    // border-right: 5px solid black;
+    // transform: translate(-90%);
+    // background-color: red;
+    width: 25px;
+    height: 17%;
+    // background-color: red;
+    padding-top: 13px;
+    & > div {
+      background-color: black;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      margin-bottom: 39px;
+      &:first-child {
+        margin-bottom: 35px;
+      }
+    }
+
+    // &:after {
+
+    // }
+  }
+  &__jacket-zipper {
+    position: absolute;
+    left: 50%;
+    top: 74.5%;
+    transform: translate(-50%);
+    background-color: black;
+    width: 4px;
+    height: 18%;
+    // border-radius:
+    &:after {
+      position: absolute;
+      content: '';
+      display: block;
+      // width: 50px;
+      // height: 50px;
+      border: 2px solid black;
+      border-width: 4px 2px 4px 2px;
+      border-color: transparent transparent black transparent;
+      // background-color: pink;
+      top: 0;
+      transform: translate(0, -100%);
+
+    }
+  }
+  &__jacket-collar {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    background-color: $jacket-collar-color;
+    width: 300px;
+    height: 100px;
+    top: 62%;
+    // border-radius: 40% / 50%;
+    // border-top-left-radius: 20px 40px;
+    // border-top-right-radius: 3px 4px;
+    border-bottom-left-radius: 40% 100%;
+    border-bottom-right-radius: 40% 100%;
+    &:after {
+      top: 73%;
+      left: 50%;
+      transform: translate(-50%);
+      content: '';
+      display: block;
+      position: absolute;
+      // bottom: 0;
+      // left: 0;
+      border: 10px solid black;
+      border-width: 20px 10px 20px 10px;
+      border-color: $jacket-color transparent transparent transparent;
+    }
   }
 
   &__hand {
     position: absolute;
     // bottom: 0;
-    top: 80%;
+    top: 75%;
     left: 50%;
     transform: translate(-50%);
     width: 76px;
@@ -103,7 +212,7 @@ $jacket-color: #7c4e32;
     background-color: $skin-color;
     border-radius: 50%;
     border: 3px solid #edaf72;
-    top: 10%;
+    top: 0;
     left: 70%;
   }
 

@@ -6,6 +6,24 @@ block vars
 
 block content
   .stan
+
+    .stan__legs
+      .stan__foot.stan__foot--left
+      .stan__foot.stan__foot--right
+    .stan__jacket
+    .stan__arm
+      .stan__arm-contour
+      .stan__hand
+        .stan__thumb
+    .stan__arm.stan__arm--left
+      .stan__arm-contour
+      .stan__hand
+        .stan__thumb
+    .stan__jacket-collar
+    .stan__jacket-buttons
+      - for(var i = 0; i < 3; i++)
+          div
+    .stan__jacket-zipper
     .stan__head
       .eye-default
         .eye-default__pupil
@@ -19,13 +37,4 @@ block content
         .stan-hat__pompom-container
           - for(var i = 0; i < 8; i++)
             div
-    .stan__legs
-      .stan__foot.stan__foot--left
-      .stan__foot.stan__foot--right
-    .stan__arm
-      .stan__hand
-        .stan__thumb
-    .stan__arm--left
-      .stan__hand
-        .stan__thumb
 
