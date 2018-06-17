@@ -32,8 +32,22 @@ $pants-color: #000066;
   transform: translate(-50%);
 }
 @mixin main-animation-cycle() {
-  animation-duration: 3s;
+  animation-duration: 2s;
   animation-iteration-count: infinite;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+body, html {
+  height: 100%;
+}
+body {
+  // background-color: red;
+  // background-color: #006f4a;
+  background: linear-gradient(to bottom, #006f4a 0, #006f4a $container-height - 3vw, #f5f7f7 $container-height - 3vw);
+  // f5f7f7
 }
 
 .stan {
@@ -256,13 +270,16 @@ $pants-color: #000066;
   }
 
   &__pupil {
+    position: absolute;
     animation: right-eye-motion;
     @include main-animation-cycle;
     background-color: black;
     width: $default-eye-pupil-width;
     height: $default-eye-pupil-height;
+    // padding-top: 14%;
     border-radius: 50%;
-    position: relative;
+    top: 40%;
+    left: 65%;
     &--left {
       left: calc(100% - 65% - #{$default-eye-pupil-width});
       animation: left-eye-motion;
@@ -290,16 +307,20 @@ $pants-color: #000066;
   border-radius: 50%;
 }
 
+
 @media screen and (max-width: 1200px) {
   .mouth-sad {
     border-width: 3px;
   }
 }
+
 @media screen and (max-width: 1000px) {
   .mouth-sad {
     border-width: 2px;
   }
+
 }
+
 @media screen and (max-width: 800px) {
   .mouth-sad {
     border-width: 1px;
@@ -309,31 +330,25 @@ $pants-color: #000066;
 
 @keyframes right-eye-motion {
   0% {
-    left: 65%;
-    top: 40%;
+    transform: translate(-100%, 40%);
   }
   50% {
-    left: 40%;
-    top: 45%;
+    transform: translate(0, 0);
   }
   100% {
-    left: 65%;
-    top: 40%;
+    transform: translate(-100%, 40%);
   }
 }
 
 @keyframes left-eye-motion {
   0% {
-    left: calc(100% - 40% - #{$default-eye-pupil-width});
-    top: 45%;
+    transform: translate(0, 0);
   }
   50% {
-    left: calc(100% - 65% - #{$default-eye-pupil-width});
-    top: 40%;
+    transform: translate(100%, 40%);
   }
   100% {
-    left: calc(100% - 40% - #{$default-eye-pupil-width});
-    top: 45%;
+    transform: translate(0, 0);
   }
 }
 
@@ -342,10 +357,10 @@ $pants-color: #000066;
   0% {
   transform: translate(-50%) rotate(5deg);
   }
-  // 50% {
-  //   transform: translate(-50%) rotate(0deg);
-  // }
-  100% {
+  50% {
     transform: translate(-50%) rotate(-5deg);
+  }
+  100% {
+    transform: translate(-50%) rotate(5deg);
   }
 }
