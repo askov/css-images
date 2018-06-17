@@ -7,6 +7,8 @@ try {
 }
 
 var browserSync = require('browser-sync').create(),
+  htmlhint = require("gulp-htmlhint"),
+  cleanCSS = require('gulp-clean-css'),
   pug = require('gulp-pug'),
   gulp = require('gulp'),
   sass = require('gulp-sass'),
@@ -54,6 +56,9 @@ function styles() {
   return gulp.src(paths.styles.src)
     .pipe(sass())
     .pipe(postcss(plugins))
+    .pipe(cleanCSS({
+      compatibility: 'ie8'
+    }))
     .pipe(gulp.dest(paths.styles.dest))
     .pipe(browserSync.stream());
 }
@@ -71,6 +76,12 @@ function copyassets() {
     .pipe(browserSync.stream());
 }
 
+function validateHtml() {
+  return gulp.src('dest/**/*.html')
+    .pipe(htmlhint())
+    .pipe(htmlhint.reporter());
+}
+
 function watch() {
   gulp.watch(paths.styles.src, styles);
   gulp.watch(paths.pug.src, views);
@@ -83,3 +94,4 @@ var dev = gulp.series(clean, build, gulp.parallel(sync, watch));
 
 gulp.task('dev', dev);
 gulp.task('build', build);
+gulp.task('validate', validateHtml);
